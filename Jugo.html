@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jugo</title>
+    <link rel="stylesheet" href="jugo.css">
+    <link rel="canonical" href="https://codepen.io/TurkAysenur/pen/BavLzPj">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+</head>
+<body>
+    <main class="app">
+        <div class="sidebar">
+            <div class="user">
+                <img src="https://pps.whatsapp.net/v/t61.24694-24/368254175_291907646774802_2890467845547665836_n.jpg?ccb=11-4&oh=01_AdRzdEtKBKsZHuM6Tiun91J7Cfomk3-9NSyix5seFeQ6rw&oe=6519B1C1&_nc_sid=000000&_nc_cat=106" alt="user photo" class="user-photo">
+                <div class="user-name">Jairo</div>
+                <div class="user-mail">77047178@certus.edu.pe</div>
+            </div>
+            <div class="sidebar-menu">
+                <a href="#" class="sidebar-menu__link active">ColorD</a>
+                <a href="#" class="sidebar-menu__link">assistent</a>
+                <a href="#" class="sidebar-menu__link">Ubicación</a>
+                <a href="#" class="sidebar-menu__link">ChatBot</a>
+                <a href="#" class="sidebar-menu__link">#</a>
+                <a href="#" class="sidebar-menu__link">White/Darck</a>
+            </div>
+            <label class="toggle">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="main-in">
+            <div class="main-header">
+                <div class="main-header__title">Integrantes XD</div>
+                <div class="main-header__avatars">
+                    <img class="main-header__avatar" src="imgcomp/cmpañero1.jpeg" alt="avatar">
+                    <img class="main-header__avatar" src="imgcomp/cmpañera2.jpeg" alt="avatar">
+                    <img class="main-header__avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1760&amp;q=80" alt="avatar">
+                </div>
+                <button class="main-header__add" onclick="redirigirAHtml()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #ffff ;"><path d="M21 4H2v2h2.3l3.28 9a3 3 0 0 0 2.82 2H19v-2h-8.6a1 1 0 0 1-.94-.66L9 13h9.28a2 2 0 0 0 1.92-1.45L22 5.27A1 1 0 0 0 21.27 4 .84.84 0 0 0 21 4zm-2.75 7h-10L6.43 6h13.24z"></path><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="16.5" cy="19.5" r="1.5"></circle></svg>
+                </button>
+            </div>
+
+            <div class="main-header-nav">
+                <a href="#" class="nav-item active" id="todo-link">Todo</a>
+                <a href="#" class="nav-item" id="envios-link">Envios</a>
+                <a href="#" class="nav-item">Local</a>
+                <a href="#" class="nav-item">Notas</a>
+                <a href="#" class="nav-item">info</a>
+            </div>
+
+            <div class="main-content expanded">
+                <div class="card card-2 card-img"></div>
+                <div class="card card-3 card-img active"></div>
+                <div class="card card-img card-1 card-main"></div>
+                <div class="card card-4 card-img"></div>
+                <div class="card card-img card-5"></div>
+                <div class="card card-6 card-img"></div>
+            </div>
+
+        </div>
+    </main>
+    <script id="rendered-js">
+
+        const menuItems = document.querySelectorAll(".sidebar-menu__link");
+        
+        const navItems = document.querySelectorAll(".nav-item");
+        
+        menuItems.forEach(menuItem => {
+            menuItem.addEventListener("click", e => {
+                if (!e.target.classList.contains("active")) {
+                document.
+                querySelector(".sidebar-menu__link.active").
+                classList.remove("active");
+                e.target.classList.add("active");
+                }
+            });
+        });
+        
+        navItems.forEach(navItem => {
+            navItem.addEventListener("click", e => {
+                if (!e.target.classList.contains("active")) {
+                document.querySelector(".nav-item.active").classList.remove("active");
+                e.target.classList.add("active");
+                }
+            });
+        });
+        
+        const cards = document.querySelectorAll(".card");
+        const mainContent = document.querySelector(".main-content");
+        
+        cards.forEach(card => {
+            card.addEventListener("click", () => {
+                console.log("");
+                document.startViewTransition(() => {
+                if (!card.classList.contains('active')) {
+                    mainContent.classList.add("expanded");
+                    card.classList.add("active");
+                } else {
+                    card.classList.remove("active");
+                    mainContent.classList.remove("expanded");
+                }
+                });
+            });
+        });
+        
+    </script>
+    <script>
+        function redirigirAHtml() {
+            
+            window.location.href = "tarjeta.html";
+        }
+    </script>
+
+    
+    <script>
+                // Obtener los enlaces "Todo" y "Envios"
+        const todoLink = document.getElementById("todo-link");
+        const enviosLink = document.getElementById("envios-link");
+
+        // Obtener todas las tarjetas
+        const card = document.querySelectorAll(".card");
+
+        // Manejar el clic en "Envios"
+        enviosLink.addEventListener("click", function () {
+            // Iterar sobre todas las tarjetas
+            cards.forEach(function (card) {
+                // Obtener la clase de la tarjeta
+                const cardClass = card.classList[1];
+
+                // Cambiar la imagen de fondo de acuerdo a la clase de la tarjeta
+                switch (cardClass) {
+                    case "card-2":
+                        card.style.backgroundImage = 'url(https://www.cerveceriahondurena.com/sites/g/files/seuoyk1266/themes/site/HTML_CSS_CHSA/Resources/images/DEL_VALLE_LATA_330ML_MANGO-1920w.jpg)';
+                        break;
+                    case "card-3":
+                        card.style.backgroundImage = 'url("https://www.cerveceriahondurena.com/sites/g/files/seuoyk1266/themes/site/HTML_CSS_CHSA/Resources/images/DEL_VALLE_LATA_330ML_GUAYABA-1920w.jpg")';
+                        break;
+                    case "card-4":
+                        card.style.backgroundImage = 'url("https://www.cerveceriahondurena.com/sites/g/files/seuoyk1266/themes/site/HTML_CSS_CHSA/Resources/images/del_valle_pina_mandarina_lata_330ML-1920w.jpg")';
+                        break;
+                    case "card-5":
+                        card.style.backgroundImage = 'url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQTHclFgCFvBvJXU6zpOSRgvAinPUXRqbX5w&usqp=CAU")';
+                        break;
+                    case "card-6":
+                        card.style.backgroundImage = 'url("https://supermercadosnacional.com/media/catalog/product/cache/fde49a4ea9a339628caa0bc56aea00ff/2/2/2218252-1.jpg")';
+                        break;
+                    // Puedes agregar más casos según sea necesario
+                }
+            });
+        });
+
+        // Manejar el clic en "Todo"
+        todoLink.addEventListener("click", function () {
+            // Restaurar las imágenes originales de fondo de todas las tarjetas
+            cards.forEach(function (card) {
+                card.style.backgroundImage = '';
+            });
+        });
+    </script>
+    
+
+    
+</body>
+</html>
